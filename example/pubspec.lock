@@ -118,13 +118,6 @@ packages:
       relative: true
     source: path
     version: "1.5.6"
-  gbk2utf8:
-    dependency: transitive
-    description:
-      name: gbk2utf8
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   html:
     dependency: transitive
     description:

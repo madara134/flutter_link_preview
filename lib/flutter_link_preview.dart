@@ -5,10 +5,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:flutter/material.dart';
-import 'package:gbk2utf8/gbk2utf8.dart';
+
 import 'package:html/dom.dart' as html hide Text;
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart';
+import 'gbk2utf8.dart';
 import 'package:http/io_client.dart';
 
 part 'web_analyzer.dart';
@@ -27,7 +28,7 @@ class FlutterLinkPreview extends StatefulWidget {
   }) : super(key: key);
 
   /// Web address, HTTP and HTTPS support
-  final String url;
+  final String? url;
 
   /// Cache result time, default cache 1 hour
   final Duration cache;
@@ -52,19 +53,19 @@ class FlutterLinkPreview extends StatefulWidget {
 }
 
 class _FlutterLinkPreviewState extends State<FlutterLinkPreview> {
-  String? _url;
-  InfoBase? _info;
+  late String _url;
+  late InfoBase? _info;
 
   @override
   void initState() {
-    _url = widget.url.trim();
+    _url = widget.url!.trim();
     _info = WebAnalyzer.getInfoFromCache(_url);
     if (_info == null) _getInfo();
     super.initState();
   }
 
   Future<void> _getInfo() async {
-    if (_url!.startsWith("http")) {
+    if (_url.startsWith("http")) {
       _info = await WebAnalyzer.getInfo(
         _url,
         cache: widget.cache,
