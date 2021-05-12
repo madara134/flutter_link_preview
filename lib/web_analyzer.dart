@@ -123,7 +123,7 @@ class WebAnalyzer {
     final answer = ReceivePort();
 
     sendPort.send([answer.sendPort, url, multimedia]);
-    final List<String>? res = await (answer.first as FutureOr<List<String>?>);
+    final List<String>? res = await (answer.first);
 
     InfoBase? info;
     if (res != null) {

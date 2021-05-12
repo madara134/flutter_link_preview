@@ -1,6 +1,5 @@
 library flutter_link_preview;
 
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
